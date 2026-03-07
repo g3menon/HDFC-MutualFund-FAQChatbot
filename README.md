@@ -7,11 +7,26 @@ An intelligent **Retrieval-Augmented Generation (RAG)** chatbot designed to prov
 This project is a multi-phase implementation of a production-ready AI application. It demonstrates core skills in web scraping, data engineering, vector databases, LLM orchestration (RAG), and web development.
 
 ### Supported Funds
-- HDFC Banking & Financial Services Fund
-- HDFC Pharma and Healthcare Fund
-- HDFC Housing Opportunities Fund
-- HDFC Manufacturing Fund
-- HDFC Transportation and Logistics Fund
+
+| # | Fund Name | Source Information (IndMoney) |
+|---|-----------|-------------------------------|
+| 1 | HDFC Banking & Financial Services Fund | [Link](https://www.indmoney.com/mutual-funds/hdfc-banking-financial-services-fund-direct-growth-1006661) |
+| 2 | HDFC Pharma and Healthcare Fund | [Link](https://www.indmoney.com/mutual-funds/hdfc-pharma-and-healthcare-fund-direct-growth-1044289) |
+| 3 | HDFC Housing Opportunities Fund | [Link](https://www.indmoney.com/mutual-funds/hdfc-housing-opportunities-fund-direct-growth-9006) |
+| 4 | HDFC Manufacturing Fund | [Link](https://www.indmoney.com/mutual-funds/hdfc-manufacturing-fund-direct-growth-1045641) |
+| 5 | HDFC Transportation and Logistics Fund | [Link](https://www.indmoney.com/mutual-funds/hdfc-transportation-and-logistics-fund-direct-growth-1044147) |
+
+### 💬 Sample Queries
+
+You can ask the chatbot about:
+- **Costs**: "What is the expense ratio of HDFC Pharma and Healthcare Fund?"
+- **Returns**: "What is the 1-year return for HDFC Manufacturing Fund?"
+- **Investment**: "What is the minimum SIP for the Housing Opportunities Fund?"
+- **Portfolio**: "Show me the top holdings of HDFC Banking Fund."
+- **Help**: "How to download capital-gains statement?"
+
+> [!IMPORTANT]
+> **Disclaimer**: This chatbot is for educational purposes only. All financial data is retrieved from external sources and does not constitute investment advice. Please consult a professional advisor before making investment decisions.
 
 ---
 
