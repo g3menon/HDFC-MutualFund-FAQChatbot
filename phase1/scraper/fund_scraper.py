@@ -258,14 +258,15 @@ async def run_scraper():
 
         # Print summary
         print(f"\n{'='*60}")
-        print(f"📊 Scraping Summary")
+        print(f"Scraping Summary")
         print(f"{'='*60}")
         print(f"  Funds scraped: {len(results)}/{len(FUND_URLS)}")
         print(f"  Errors: {len(scraper.errors)}")
         for fund_id, data in results.items():
             nav = data.get("overview", {}).get("nav", "N/A")
             er = data.get("costs", {}).get("expense_ratio", "N/A")
-            print(f"  • {data['fund_name']}: NAV={nav}, ER={er}")
+            safe_nav = str(nav).replace("₹", "Rs. ")
+            print(f"  - {data['fund_name']}: NAV={safe_nav}, ER={er}")
         print(f"{'='*60}\n")
 
         return results

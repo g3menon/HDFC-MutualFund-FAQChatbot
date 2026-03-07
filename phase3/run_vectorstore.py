@@ -14,15 +14,22 @@ import argparse
 import sys
 import io
 import logging
+import os
 from pathlib import Path
+
+# Add project root to sys.path to resolve 'phase3' absolute imports
+project_root = Path(__file__).resolve().parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+from phase3.vectorstore.store import VectorStore
+from phase3.vectorstore.retriever import Retriever
+from phase3.vectorstore.config import PINECONE_INDEX_NAME
 
 # Fix Windows console encoding
 if sys.stdout.encoding != 'utf-8':
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
-
-# Add project root to path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 # Configure logging
 logging.basicConfig(
@@ -31,10 +38,6 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 logger = logging.getLogger("phase3")
-
-from phase3.vectorstore.store import VectorStore
-from phase3.vectorstore.retriever import Retriever
-from phase3.vectorstore.config import CHROMA_PERSIST_DIR, CHROMA_COLLECTION_NAME
 
 
 def build_store(force_rebuild: bool = False):
@@ -46,9 +49,8 @@ def build_store(force_rebuild: bool = False):
     print(f"\n{'='*60}")
     print(f"📊 Vector Store Build Complete")
     print(f"{'='*60}")
-    print(f"  Collection: {CHROMA_COLLECTION_NAME}")
+    print(f"  Collection: {PINECONE_INDEX_NAME}")
     print(f"  Vectors: {count}")
-    print(f"  Persist Dir: {CHROMA_PERSIST_DIR}")
     print(f"{'='*60}\n")
 
 

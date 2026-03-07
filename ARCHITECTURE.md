@@ -51,13 +51,13 @@ A **Retrieval-Augmented Generation (RAG) chatbot** that answers user queries abo
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                     FRONTEND — Chat UI (Phase 5a)                          │
-│          Modern HTML / CSS / JS  •  Google Auth  •  Responsive             │
+│                     FRONTEND — Chat UI (Phase 5b)                          │
+│          Modern HTML / CSS / JS  •  Responsive                             │
 └──────────────────────────┬──────────────────────────────────────────────────┘
                            │  REST / WebSocket (HTTP)
                            ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                     BACKEND — API Server (Phase 5b)                        │
+│                     BACKEND — API Server (Phase 5a)                        │
 │          FastAPI  •  /chat  /health  /funds  •  Session Mgmt               │
 └──────────┬──────────────────────────────────┬───────────────────────────────┘
            │                                  │
@@ -825,7 +825,6 @@ Build the complete chat application as two independently deployable components: 
 | `GET`  | `/api/health` | Health check & data freshness | — | `{ "status": "ok", "last_data_refresh": str }` |
 | `GET`  | `/api/funds` | List available funds with key stats | — | `[ { "fund_id": str, "fund_name": str, "nav": str, ... } ]` |
 | `GET`  | `/api/funds/{fund_id}` | Get details of a specific fund | — | `{ "fund_id": str, ... }` |
-| `POST` | `/api/auth/google` | Verify Google ID token | `{ "id_token": str }` | `{ "user_id": str, "email": str, "name": str }` |
 | `GET`  | `/api/suggestions` | Get suggested questions | — | `[ "What is the expense ratio?", ... ]` |
 
 #### Backend Architecture
@@ -843,11 +842,10 @@ Request → CORS Middleware → Auth Middleware → Route Handler
 #### Key Backend Features
 
 1. **CORS Configuration** — Allow frontend origin(s) for cross-origin requests
-2. **Google Auth Verification** — Validate Google ID tokens for user authentication
-3. **Session / Chat History** — Optional in-memory or Redis-backed chat history per user
-4. **Rate Limiting** — Protect against abuse (e.g., 30 requests/min per user)
-5. **Error Handling** — Structured error responses with appropriate HTTP status codes
-6. **Logging & Metrics** — Request logging, latency tracking, error rates
+2. **Session / Chat History** — Optional in-memory or Redis-backed chat history per user
+3. **Rate Limiting** — Protect against abuse (e.g., 30 requests/min per user)
+4. **Error Handling** — Structured error responses with appropriate HTTP status codes
+5. **Logging & Metrics** — Request logging, latency tracking, error rates
 
 #### Directory Structure (Phase 5 — Backend)
 
@@ -860,7 +858,6 @@ phase5/
 │   │   ├── __init__.py
 │   │   ├── chat.py            # /api/chat endpoint
 │   │   ├── funds.py           # /api/funds endpoints
-│   │   ├── auth.py            # /api/auth/google endpoint
 │   │   └── health.py          # /api/health endpoint
 │   ├── middleware/
 │   │   ├── __init__.py
@@ -872,15 +869,13 @@ phase5/
 │   │   └── responses.py       # Pydantic response models
 │   ├── services/
 │   │   ├── __init__.py
-│   │   ├── rag_service.py     # Wraps Phase 4 pipeline
-│   │   └── auth_service.py    # Google auth verification
+│   │   └── rag_service.py     # Wraps Phase 4 pipeline
 │   ├── config.py              # Backend configuration
 │   └── utils.py               # Helpers
 ├── tests/
 │   ├── __init__.py
 │   ├── test_chat_api.py       # Chat endpoint tests
 │   ├── test_funds_api.py      # Funds endpoint tests
-│   ├── test_auth.py           # Auth tests
 │   └── test_health.py         # Health check tests
 ├── requirements.txt
 ├── run_backend.py             # Launch: uvicorn main:app
@@ -897,10 +892,8 @@ phase5/
 | T5B.4 | `GET /api/funds` lists all funds | Array of 5 fund objects |
 | T5B.5 | `GET /api/funds/{id}` for valid fund | Fund details returned |
 | T5B.6 | `GET /api/funds/{id}` for invalid fund | 404 error |
-| T5B.7 | `POST /api/auth/google` with valid token | User info returned |
-| T5B.8 | `POST /api/auth/google` with invalid token | 401 error |
-| T5B.9 | CORS allows configured origins | Preflight request succeeds |
-| T5B.10 | Rate limiting triggers after threshold | 429 Too Many Requests |
+| T5B.7 | CORS allows configured origins | Preflight request succeeds |
+| T5B.8 | Rate limiting triggers after threshold | 429 Too Many Requests |
 
 ---
 
@@ -911,7 +904,6 @@ phase5/
 A standalone frontend decoupled from the Python backend enables:
 - **CDN deployment** (e.g., Vercel, Netlify) for fast global access
 - **Full design control** — custom animations, glassmorphism, dark mode
-- **Google Sign-In** via Google Identity Services (GIS)
 - **Offline-capable** — can be turned into a PWA later
 
 #### Features
@@ -923,29 +915,24 @@ A standalone frontend decoupled from the Python backend enables:
    - Clear chat button
    - Markdown rendering for formatted responses
 
-2. **Google Sign-In**
-   - One-tap Google authentication
-   - Display user avatar, name, and email
-   - Personalized experience per user
-
-3. **Fund Selector Sidebar**
+2. **Fund Selector Sidebar**
    - Dropdown or pill buttons to filter by specific fund
    - "All Funds" option for cross-fund queries
    - Fund cards showing key stats (NAV, riskometer, etc.)
 
-4. **Suggested Questions**
+3. **Suggested Questions**
    - Quick-action chips for common queries:
      - "What is the expense ratio?"
      - "What is the exit load?"
      - "Minimum SIP amount?"
      - "How to download capital gains statement?"
 
-5. **Response Formatting**
+4. **Response Formatting**
    - Markdown → HTML rendering for tables and lists
    - Source citation badges
    - Data freshness timestamp
 
-6. **Responsive Design**
+5. **Responsive Design**
    - Mobile-first, works on all screen sizes
    - Dark mode support
    - Smooth micro-animations and transitions
@@ -960,9 +947,6 @@ fetch('/api/chat', { POST })   ──►    /api/chat handler
 
 fetch('/api/funds', { GET })   ──►    /api/funds handler
                                ◄──    JSON [ fund1, fund2, ... ]
-
-Google Sign-In (GIS)           ──►    /api/auth/google
-                               ◄──    JSON { user_id, name }
 ```
 
 #### Directory Structure (Phase 5 — Frontend)
@@ -979,7 +963,6 @@ phase5/
 │   │   ├── app.js             # Main application logic
 │   │   ├── api.js             # Backend API client (fetch wrappers)
 │   │   ├── chat.js            # Chat UI logic
-│   │   ├── auth.js            # Google Sign-In integration
 │   │   └── utils.js           # Markdown rendering, helpers
 │   └── assets/
 │       ├── logo.svg           # App logo

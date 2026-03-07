@@ -5,25 +5,25 @@
   "plan_type": "Direct Plan - Growth",
   "category": "Equity - Sectoral",
   "overview": {
-    "nav": "₹23.49",
-    "nav_date": "04 Mar 2026",
+    "nav": "₹23.39",
+    "nav_date": "06 Mar 2026",
     "benchmark": "Nifty Housing TR INR"
   },
   "returns": {
-    "1M": "3.77%",
-    "3M": "2.6%",
-    "6M": "2.41%",
-    "1Y": "14.66%",
-    "3Y": "18.18%",
-    "5Y": "15.47%",
+    "1M": "3.7%",
+    "3M": "3.41%",
+    "6M": "2.56%",
+    "1Y": "10.88%",
+    "3Y": "17.83%",
+    "5Y": "15.76%",
     "since_inception": null,
     "benchmark_returns": {
-      "1M": "1.56%",
-      "3M": "2.42%",
-      "6M": "1.52%",
-      "1Y": "16.31%",
-      "3Y": "16.18%",
-      "5Y": "12.79%"
+      "1M": "1.14%",
+      "3M": "2.8%",
+      "6M": "1.48%",
+      "1Y": "13.3%",
+      "3Y": "15.9%",
+      "5Y": "13.06%"
     }
   },
   "costs": {
@@ -82,11 +82,11 @@
     },
     {
       "question": "What is the current NAV of HDFC Housing Opportunities Fund?",
-      "answer": "The NAV of the fund today is ₹23.49. NAV or Net Asset Value is the per unit price of a mutual fund. For example, if the NAV of a fund is ₹10, it means you can get 1000 units of that mutual fund at ₹10,000."
+      "answer": "The NAV of the fund today is ₹23.39. NAV or Net Asset Value is the per unit price of a mutual fund. For example, if the NAV of a fund is ₹10, it means you can get 1000 units of that mutual fund at ₹10,000."
     },
     {
       "question": "What is the return on the fund?",
-      "answer": "HDFC Housing Opportunities Fund fund has generated a return of 14.66% in 1 year, 18.18% in 3 years, 15.47% in 5 years."
+      "answer": "HDFC Housing Opportunities Fund fund has generated a return of 10.88% in 1 year, 17.83% in 3 years, 15.76% in 5 years."
     },
     {
       "question": "Who is the fund manager of HDFC Housing Opportunities Fund?",
@@ -114,5 +114,5 @@
     "kim_link": null,
     "factsheet_link": null
   },
-  "scraped_at": "2026-03-05T05:42:09.041560+00:00"
+  "scraped_at": "2026-03-07T06:26:19.615409+00:00"
 }

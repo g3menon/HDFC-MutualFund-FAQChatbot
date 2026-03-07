@@ -12,12 +12,12 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")
 
 # ─── Embedding Model ───────────────────────────────────────────────
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
-EMBEDDING_DIMENSION = 384  # all-MiniLM-L6-v2 produces 384-dim vectors
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/gemini-embedding-001")
+EMBEDDING_DIMENSION = 3072
 
-# ─── ChromaDB ──────────────────────────────────────────────────────
-CHROMA_PERSIST_DIR = str(Path(__file__).resolve().parent.parent / "data" / "chroma_db")
-CHROMA_COLLECTION_NAME = os.getenv("CHROMA_COLLECTION", "hdfc_mutual_funds")
+# ─── Pinecone ──────────────────────────────────────────────────────
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "hdfc-mutual-funds")
 
 # ─── Paths ─────────────────────────────────────────────────────────
 PROCESSED_CHUNKS_FILE = Path(__file__).resolve().parent.parent.parent / "phase2" / "data" / "processed" / "processed_chunks.json"

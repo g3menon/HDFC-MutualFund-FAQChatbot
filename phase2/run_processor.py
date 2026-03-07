@@ -15,18 +15,15 @@ import io
 import json
 from pathlib import Path
 
-# Fix Windows console encoding for emoji output
-if sys.stdout.encoding != 'utf-8':
-    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
-    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
-
-# Add project root to path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
 from phase2.processor.chunk_builder import process_all_funds, OUTPUT_FILE, QUALITY_REPORT_FILE
 from phase2.processor.schema_validator import validate_all_funds
 from phase2.processor.data_cleaner import clean_fund_data
 from phase2.processor.utils import logger, load_json
+
+# Fix Windows console encoding for emoji output
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 
 def validate_only():

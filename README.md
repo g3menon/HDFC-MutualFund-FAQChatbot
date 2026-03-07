@@ -27,19 +27,21 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the complete phase-wise architecture.
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| Phase 1 | Data Collection (Web Scraping) | 🔲 Not Started |
-| Phase 2 | Data Processing & Chunking | 🔲 Not Started |
-| Phase 3 | Vector Store & Embedding | 🔲 Not Started |
-| Phase 4 | RAG Pipeline & LLM Integration | 🔲 Not Started |
-| Phase 5 | Chat UI (Frontend) | 🔲 Not Started |
-| Phase 6 | Integration Testing | 🔲 Not Started |
+| Phase 1 | Data Collection (Web Scraping) | ✅ Complete |
+| Phase 2 | Data Processing & Chunking | ✅ Complete |
+| Phase 3 | Vector Store & Embedding | ✅ Complete |
+| Phase 4 | RAG Pipeline & LLM Integration | ✅ Complete |
+| Phase 5 | Chat UI (Frontend/FastAPI) | ✅ Complete |
+| Phase 6 | Integration Testing & Guardrails | ✅ Complete |
+| Phase 7 | Data Refresh Scheduler | ✅ Complete |
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.10+
-- Google Chrome (for web scraping)
+- Google Chrome (for Playwright web scraping)
 - Google Gemini API key
+- Pinecone API key (Free Tier)
 
 ### Setup
 
@@ -50,33 +52,33 @@ cd GenAIBootcamp_Milestone1
 
 # Create virtual environment
 python -m venv .venv
-.venv\Scripts\activate  # Windows
+.\.venv\Scripts\activate  # Windows
 
 # Install dependencies
 pip install -r requirements.txt
+playwright install
 
 # Configure environment
-cp .env.example .env
-# Edit .env with your API keys
+# Edit .env with your GEMINI_API_KEY and PINECONE_API_KEY
 ```
 
-### Run
+### Run Server
+
+This project is optimized for a **Free Forever** cloud deployment using Vercel, Google Gemini, and Pinecone Serverless.
 
 ```bash
-# Phase 1: Scrape data
-python phase1/run_scraper.py
+# Launch the backend server
+uvicorn phase5.backend.main:app --host 127.0.0.1 --port 8000
+```
+Navigate to `http://127.0.0.1:8000` to interact with the UI locally.
 
-# Phase 2: Process data
-python phase2/run_processor.py
+### Data Refresh
 
-# Phase 3: Build vector store
-python phase3/run_vectorstore.py
+The system uses an orchestrated pipeline to scrape fresh data, generate Gemini embeddings, and sync them to Pinecone. In production (Vercel), this is triggered via Vercel Cron at 10:00 AM daily.
 
-# Phase 4: Test RAG pipeline
-python phase4/run_rag.py "What is the expense ratio of HDFC Pharma Fund?"
-
-# Phase 5: Launch chat UI
-streamlit run phase5/app/streamlit_app.py
+```bash
+# Run the pipeline manually to populate Pinecone the first time
+python -m phase3.run_vectorstore --rebuild
 ```
 
 ## 📄 License

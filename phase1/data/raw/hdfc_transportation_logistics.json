@@ -5,25 +5,25 @@
   "plan_type": "Direct Plan - Growth",
   "category": "Equity - Sectoral",
   "overview": {
-    "nav": "₹17.64",
-    "nav_date": "04 Mar 2026",
+    "nav": "₹17.74",
+    "nav_date": "06 Mar 2026",
     "benchmark": "Nifty Transportation & Logistics TR INR"
   },
   "returns": {
-    "1M": "5.09%",
-    "3M": "5.43%",
-    "6M": "3.23%",
-    "1Y": "31.31%",
+    "1M": "3.63%",
+    "3M": "4.78%",
+    "6M": "3.5%",
+    "1Y": "27.95%",
     "3Y": "--",
     "5Y": "--",
     "since_inception": null,
     "benchmark_returns": {
-      "1M": "1.56%",
-      "3M": "2.42%",
-      "6M": "1.52%",
-      "1Y": "16.31%",
-      "3Y": "16.18%",
-      "5Y": "12.79%"
+      "1M": "1.14%",
+      "3M": "2.8%",
+      "6M": "1.48%",
+      "1Y": "13.3%",
+      "3Y": "15.9%",
+      "5Y": "13.06%"
     }
   },
   "costs": {
@@ -82,11 +82,11 @@
     },
     {
       "question": "What is the current NAV of HDFC Transportation and Logistics Fund?",
-      "answer": "The NAV of the fund today is ₹17.64. NAV or Net Asset Value is the per unit price of a mutual fund. For example, if the NAV of a fund is ₹10, it means you can get 1000 units of that mutual fund at ₹10,000."
+      "answer": "The NAV of the fund today is ₹17.74. NAV or Net Asset Value is the per unit price of a mutual fund. For example, if the NAV of a fund is ₹10, it means you can get 1000 units of that mutual fund at ₹10,000."
     },
     {
       "question": "What is the return on the fund?",
-      "answer": "HDFC Transportation and Logistics Fund fund has generated a return of 31.31% in 1 year"
+      "answer": "HDFC Transportation and Logistics Fund fund has generated a return of 27.95% in 1 year"
     },
     {
       "question": "Who is the fund manager of HDFC Transportation and Logistics Fund?",
@@ -114,5 +114,5 @@
     "kim_link": null,
     "factsheet_link": null
   },
-  "scraped_at": "2026-03-05T05:42:45.931530+00:00"
+  "scraped_at": "2026-03-07T06:26:58.905230+00:00"
 }

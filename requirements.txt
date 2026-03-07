@@ -5,11 +5,10 @@ playwright>=1.40.0
 jsonschema>=4.20.0
 
 # Phase 3: Vector Store
-chromadb>=0.4.22
-sentence-transformers>=2.3.0
+pinecone-client>=3.1.0
 
 # Phase 4: RAG
-google-generativeai>=0.3.0
+google-genai>=0.2.0
 # openai>=1.6.0  # Alternative LLM
 
 # Phase 5: Backend API

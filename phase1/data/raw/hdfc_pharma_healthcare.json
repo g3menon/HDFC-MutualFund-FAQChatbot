@@ -5,25 +5,25 @@
   "plan_type": "Direct Plan - Growth",
   "category": "Equity - Sectoral",
   "overview": {
-    "nav": "₹17.83",
-    "nav_date": "04 Mar 2026",
+    "nav": "₹18.05",
+    "nav_date": "06 Mar 2026",
     "benchmark": null
   },
   "returns": {
-    "1M": "3.48%",
-    "3M": "0.29%",
-    "6M": "1.04%",
-    "1Y": "19.38%",
+    "1M": "4.26%",
+    "3M": "1.23%",
+    "6M": "2.1%",
+    "1Y": "16.75%",
     "3Y": "--",
     "5Y": "--",
     "since_inception": null,
     "benchmark_returns": {
-      "1M": "1.56%",
-      "3M": "2.42%",
-      "6M": "1.52%",
-      "1Y": "16.31%",
-      "3Y": "16.18%",
-      "5Y": "12.79%"
+      "1M": "1.14%",
+      "3M": "2.8%",
+      "6M": "1.48%",
+      "1Y": "13.3%",
+      "3Y": "15.9%",
+      "5Y": "13.06%"
     }
   },
   "costs": {
@@ -82,11 +82,11 @@
     },
     {
       "question": "What is the current NAV of HDFC Pharma and Healthcare Fund?",
-      "answer": "The NAV of the fund today is ₹17.84. NAV or Net Asset Value is the per unit price of a mutual fund. For example, if the NAV of a fund is ₹10, it means you can get 1000 units of that mutual fund at ₹10,000."
+      "answer": "The NAV of the fund today is ₹18.05. NAV or Net Asset Value is the per unit price of a mutual fund. For example, if the NAV of a fund is ₹10, it means you can get 1000 units of that mutual fund at ₹10,000."
     },
     {
       "question": "What is the return on the fund?",
-      "answer": "HDFC Pharma and Healthcare Fund fund has generated a return of 19.38% in 1 year"
+      "answer": "HDFC Pharma and Healthcare Fund fund has generated a return of 16.75% in 1 year"
     },
     {
       "question": "Who is the fund manager of HDFC Pharma and Healthcare Fund?",
@@ -114,5 +114,5 @@
     "kim_link": null,
     "factsheet_link": null
   },
-  "scraped_at": "2026-03-05T05:41:50.535874+00:00"
+  "scraped_at": "2026-03-07T06:26:00.424040+00:00"
 }
