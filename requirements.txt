@@ -5,7 +5,7 @@ playwright>=1.40.0
 jsonschema>=4.20.0
 
 # Phase 3: Vector Store
-pinecone-client>=3.1.0
+pinecone>=3.1.0
 
 # Phase 4: RAG
 google-genai>=0.2.0

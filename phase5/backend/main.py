@@ -91,7 +91,9 @@ def suggestions():
         "How to download capital gains statement?"
     ]
 
-# Serve static files for the frontend
-frontend_dir = os.path.join(os.path.dirname(__file__), "../frontend")
-app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+# Serve static files only when not on Vercel (Vercel serves from public/ via CDN)
+if not os.getenv("VERCEL"):
+    frontend_dir = os.path.join(os.path.dirname(__file__), "../frontend")
+    if os.path.isdir(frontend_dir):
+        app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
 
