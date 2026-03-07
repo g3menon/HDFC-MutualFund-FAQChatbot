@@ -6,13 +6,16 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 # Ensure the root directory is in the Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+# On Vercel, the root is usually /var/task
+root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+if root_dir not in sys.path:
+    sys.path.insert(0, root_dir)
 
 from phase4.rag.pipeline import RAGPipeline
 from phase4.rag.config import SUPPORTED_FUNDS
 
 from phase7.scheduler.status_tracker import read_status
-from phase7.scheduler.scheduler import start_scheduler
+# Removed start_scheduler import to avoid heavy transitive imports (playwright) on startup
 
 app = FastAPI(title="HDFC Mutual Fund API", version="1.0.0")
 
@@ -30,30 +33,31 @@ def get_pipeline():
     global pipeline
     if pipeline is None:
         try:
+            # Load environment variables explicitly for Vercel if .env exists
+            # (Vercel usually provides them via os.environ, so this is for local/other envs)
+            from dotenv import load_dotenv
+            load_dotenv()
+            
             pipeline = RAGPipeline()
             print("RAG Pipeline initialized successfully.")
         except Exception as e:
             print(f"Failed to initialize RAG pipeline: {e}")
-            raise e
+            raise HTTPException(status_code=500, detail=f"Pipeline initialization failed: {str(e)}")
     return pipeline
 
-@app.on_event("startup")
-def startup_event():
-    # Attempt early warm-up
-    try:
-        get_pipeline()
-    except:
-        pass
+# Removed @app.on_event("startup") to prevent cold-start timeouts on Vercel
 
 @app.get("/")
 def read_root():
     return {"message": "HDFC Mutual Fund RAG API is live. Use /api/chat for queries."}
 
+from typing import Optional, List
+
 class ChatRequest(BaseModel):
     query: str
-    fund_filter: str = None
-    user_id: str = None
-    chat_history: list = []
+    fund_filter: Optional[str] = None
+    user_id: Optional[str] = None
+    chat_history: List[dict] = []
 
 @app.post("/api/chat")
 def chat(request: ChatRequest):

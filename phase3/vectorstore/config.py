@@ -8,8 +8,12 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load environment variables from project root .env
-load_dotenv(Path(__file__).resolve().parent.parent.parent / ".env")
+# Load environment variables from project root .env if it exists
+env_path = Path(__file__).resolve().parent.parent.parent / ".env"
+if env_path.exists():
+    load_dotenv(env_path)
+else:
+    load_dotenv() # Fallback to standard search
 
 # ─── Embedding Model ───────────────────────────────────────────────
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "models/gemini-embedding-001")
